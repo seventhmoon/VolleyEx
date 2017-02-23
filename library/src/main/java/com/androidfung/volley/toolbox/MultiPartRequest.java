@@ -1,4 +1,4 @@
-package com.androidfung.volley.request;
+package com.androidfung.volley.toolbox;
 
 /*
  * Original from https://github.com/DWorkS/VolleyPlus/blob/d74f4b9529c8a6b7a7afd323963214d69628ad17/library/src/com/android/volley/request/MultiPartRequest.java
@@ -11,7 +11,6 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 
 import com.android.volley.AuthFailureError;
-import com.androidfung.volley.misc.MultiPartParam;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -20,20 +19,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.androidfung.volley.misc.MultipartUtils.BINARY;
-import static com.androidfung.volley.misc.MultipartUtils.BOUNDARY_PREFIX;
-import static com.androidfung.volley.misc.MultipartUtils.COLON_SPACE;
-import static com.androidfung.volley.misc.MultipartUtils.CONTENT_TYPE_MULTIPART;
-import static com.androidfung.volley.misc.MultipartUtils.CONTENT_TYPE_OCTET_STREAM;
-import static com.androidfung.volley.misc.MultipartUtils.CRLF;
-import static com.androidfung.volley.misc.MultipartUtils.FILENAME;
-import static com.androidfung.volley.misc.MultipartUtils.FORM_DATA;
-import static com.androidfung.volley.misc.MultipartUtils.HEADER_CONTENT_DISPOSITION;
-import static com.androidfung.volley.misc.MultipartUtils.HEADER_CONTENT_TRANSFER_ENCODING;
-import static com.androidfung.volley.misc.MultipartUtils.HEADER_CONTENT_TYPE;
-import static com.androidfung.volley.misc.MultipartUtils.SEMICOLON_SPACE;
-import static com.androidfung.volley.misc.MultipartUtils.getContentLengthForMultipartRequest;
 
 /**
  * A request for making a Multi Part request
@@ -68,7 +53,7 @@ public abstract class MultiPartRequest<T> extends Request<T> {
 		mFileUploads = new HashMap<>();
 
 		curTime = (int) (System.currentTimeMillis() / 1000);
-		boundaryPrefixed = BOUNDARY_PREFIX + curTime;
+		boundaryPrefixed = MultipartUtils.BOUNDARY_PREFIX + curTime;
 	}
 
 
@@ -83,12 +68,12 @@ public abstract class MultiPartRequest<T> extends Request<T> {
 	 * Get the Content Length
 	 */
 	public int getContentLength() {
-		return getContentLengthForMultipartRequest(getBoundryPrefixed(), getMultipartParams(), getFilesToUpload());
+		return MultipartUtils.getContentLengthForMultipartRequest(getBoundryPrefixed(), getMultipartParams(), getFilesToUpload());
 	}
 
 	@Override
 	public String getBodyContentType() {
-		return String.format(CONTENT_TYPE_MULTIPART, getProtocolCharset(), getBoundry());
+		return String.format(MultipartUtils.CONTENT_TYPE_MULTIPART, getProtocolCharset(), getBoundry());
 	}
 
 	@Override
@@ -218,34 +203,34 @@ public abstract class MultiPartRequest<T> extends Request<T> {
 		}
 
 		// close multipart form data after text and file data
-		dos.writeBytes(getBoundryPrefixed() + BOUNDARY_PREFIX);
-		dos.writeBytes(CRLF);
+		dos.writeBytes(getBoundryPrefixed() + MultipartUtils.BOUNDARY_PREFIX);
+		dos.writeBytes(MultipartUtils.CRLF);
 	}
 
 	private void buildStringPart(DataOutputStream dataOutputStream, String key, MultiPartParam param) throws IOException {
 
 		dataOutputStream.writeBytes(getBoundryPrefixed());
-		dataOutputStream.writeBytes(CRLF);
-		dataOutputStream.writeBytes(String.format(HEADER_CONTENT_DISPOSITION + COLON_SPACE + FORM_DATA, key));
-		dataOutputStream.writeBytes(CRLF);
-		dataOutputStream.writeBytes(HEADER_CONTENT_TYPE + COLON_SPACE + param.contentType);
-		dataOutputStream.writeBytes(CRLF);
-		dataOutputStream.writeBytes(CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
+		dataOutputStream.writeBytes(String.format(MultipartUtils.HEADER_CONTENT_DISPOSITION + MultipartUtils.COLON_SPACE + MultipartUtils.FORM_DATA, key));
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.HEADER_CONTENT_TYPE + MultipartUtils.COLON_SPACE + param.contentType);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 		dataOutputStream.writeBytes(param.value);
-		dataOutputStream.writeBytes(CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 	}
 
 	private void buildDataPart(DataOutputStream dataOutputStream, String key, File file) throws IOException {
 
 		dataOutputStream.writeBytes(getBoundryPrefixed());
-		dataOutputStream.writeBytes(CRLF);
-		dataOutputStream.writeBytes(String.format(HEADER_CONTENT_DISPOSITION + COLON_SPACE + FORM_DATA + SEMICOLON_SPACE + FILENAME, key, file.getName()));
-		dataOutputStream.writeBytes(CRLF);
-		dataOutputStream.writeBytes(HEADER_CONTENT_TYPE + COLON_SPACE + CONTENT_TYPE_OCTET_STREAM);
-		dataOutputStream.writeBytes(CRLF);
-		dataOutputStream.writeBytes(HEADER_CONTENT_TRANSFER_ENCODING + COLON_SPACE + BINARY);
-		dataOutputStream.writeBytes(CRLF);
-		dataOutputStream.writeBytes(CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
+		dataOutputStream.writeBytes(String.format(MultipartUtils.HEADER_CONTENT_DISPOSITION + MultipartUtils.COLON_SPACE + MultipartUtils.FORM_DATA + MultipartUtils.SEMICOLON_SPACE + MultipartUtils.FILENAME, key, file.getName()));
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.HEADER_CONTENT_TYPE + MultipartUtils.COLON_SPACE + MultipartUtils.CONTENT_TYPE_OCTET_STREAM);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.HEADER_CONTENT_TRANSFER_ENCODING + MultipartUtils.COLON_SPACE + MultipartUtils.BINARY);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 
 		FileInputStream fileInputStream = new FileInputStream(file);
 		int bytesAvailable = fileInputStream.available();
@@ -264,7 +249,7 @@ public abstract class MultiPartRequest<T> extends Request<T> {
 		}
 
 
-		dataOutputStream.writeBytes(CRLF);
+		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 	}
 
 }
