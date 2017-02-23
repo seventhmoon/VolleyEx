@@ -30,7 +30,7 @@ import java.util.Map;
 
 /**
  * @param <T> Gson data model
- * @author fung.lam
+ * @author funglam
  */
 public abstract class GsonRequest<T> extends JsonRequest<T> {
 
