@@ -10,6 +10,10 @@ import com.google.gson.JsonSyntaxException;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * @author funglam
+ * @param <T>
+ */
 public class GsonObjectRequest<T> extends JsonRequest<T> {
 
     public final String TAG = GsonObjectRequest.class.getSimpleName();
