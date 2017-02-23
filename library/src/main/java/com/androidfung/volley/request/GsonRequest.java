@@ -1,30 +1,16 @@
 package com.androidfung.volley.request;
+
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonRequest;
+import com.androidfung.gson.DateSerializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 
 
@@ -104,34 +90,4 @@ public abstract class GsonRequest<T> extends JsonRequest<T> {
         }
     }
 
-
-
-    public class BooleanSerializer implements JsonSerializer<Boolean>, JsonDeserializer<Boolean> {
-
-        @Override
-        public JsonElement serialize(Boolean arg0, Type arg1, JsonSerializationContext arg2) {
-            return new JsonPrimitive(arg0 ? 1 : 0);
-        }
-
-        @Override
-        public Boolean deserialize(JsonElement arg0, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
-            return arg0.getAsInt() == 1 || arg0.getAsString().equals("1");
-        }
-    }
-
-    public class DateSerializer implements JsonDeserializer<Date> {
-        SimpleDateFormat df = new SimpleDateFormat("M/d/yyyy h:mm:ss a", Locale.ENGLISH);
-
-        @Override
-        public Date deserialize(JsonElement arg0, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
-
-            try {
-                return df.parse(arg0.getAsString());
-            } catch (ParseException e) {
-                Log.d("Error", e.toString());
-                return null;
-            }
-
-        }
-    }
 }
