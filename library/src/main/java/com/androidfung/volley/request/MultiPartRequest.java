@@ -1,6 +1,9 @@
 package com.androidfung.volley.request;
 
-import com.android.volley.DefaultRetryPolicy;
+/*
+ * Original from https://github.com/DWorkS/VolleyPlus/blob/d74f4b9529c8a6b7a7afd323963214d69628ad17/library/src/com/android/volley/request/MultiPartRequest.java
+ */
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
