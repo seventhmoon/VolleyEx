@@ -5,21 +5,17 @@ package com.androidfung.volley.toolbox;
  * Modified by Fung LAM (fung@androidfung.com)
  */
 
-
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
-import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -235,8 +231,7 @@ public abstract class MultiPartRequest<T> extends Request<T> {
 		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 
-//		Files.copy(file, dataOutputStream);
-        ByteStreams.copy(new FileInputStream(file), dataOutputStream);
+		Files.copy(file, dataOutputStream);
 
 		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 	}
