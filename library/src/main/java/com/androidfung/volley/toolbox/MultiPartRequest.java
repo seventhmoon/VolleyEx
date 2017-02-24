@@ -2,6 +2,7 @@ package com.androidfung.volley.toolbox;
 
 /*
  * Original from https://github.com/DWorkS/VolleyPlus/blob/d74f4b9529c8a6b7a7afd323963214d69628ad17/library/src/com/android/volley/request/MultiPartRequest.java
+ * Modified by Fung LAM (fung@androidfung.com)
  */
 
 import com.android.volley.NetworkResponse;
@@ -11,6 +12,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 
 import com.android.volley.AuthFailureError;
+import com.google.common.io.Files;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -27,14 +29,13 @@ import java.util.Map;
  */
 public abstract class MultiPartRequest<T> extends Request<T> {
 
+	public static final int TIMEOUT_MS = 30000;
 	private static final String PROTOCOL_CHARSET = "utf-8";
 	private int curTime;
 	private String boundaryPrefixed;
 	private Listener<T> mListener;
-
 	private Map<String, MultiPartParam> mMultipartParams = null;
 	private Map<String, String> mFileUploads = null;
-	public static final int TIMEOUT_MS = 30000;
 	private boolean isFixedStreamingMode;
 
 	/**
@@ -232,22 +233,7 @@ public abstract class MultiPartRequest<T> extends Request<T> {
 		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 
-		FileInputStream fileInputStream = new FileInputStream(file);
-		int bytesAvailable = fileInputStream.available();
-
-		int maxBufferSize = 1024 * 1024;
-		int bufferSize = Math.min(bytesAvailable, maxBufferSize);
-		byte[] buffer = new byte[bufferSize];
-
-		int bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-		while (bytesRead > 0) {
-			dataOutputStream.write(buffer, 0, bufferSize);
-			bytesAvailable = fileInputStream.available();
-			bufferSize = Math.min(bytesAvailable, maxBufferSize);
-			bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-		}
-
+		Files.copy(file, dataOutputStream);
 
 		dataOutputStream.writeBytes(MultipartUtils.CRLF);
 	}
