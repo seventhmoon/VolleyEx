@@ -37,4 +37,4 @@ android:
   #- adb shell input keyevent 82 &
 
 script:
-  ./gradlew build --stacktrace
+  ./gradlew build --stacktrace --info --debug
