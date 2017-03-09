@@ -9,6 +9,7 @@ package com.androidfung.volley.toolbox;
  * A representation of a MultiPart parameter
  *
  */
+@SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public final class MultiPartParam {
 
     public String contentType;

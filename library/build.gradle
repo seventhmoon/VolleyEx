@@ -25,7 +25,7 @@ android {
     lintOptions {
         quiet true
         checkReleaseBuilds false
-        abortOnError false
+        abortOnError true
     }
 
     compileOptions {

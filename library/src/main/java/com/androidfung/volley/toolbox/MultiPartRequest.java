@@ -25,9 +25,10 @@ import java.util.Map;
  *
  * @param <T> Response expected
  */
+@SuppressWarnings({"WeakerAccess", "CanBeFinal", "unused"})
 public abstract class MultiPartRequest<T> extends Request<T> {
 
-    public static final int TIMEOUT_MS = 30000;
+    // --Commented out by Inspection (3/9/2017 11:53 PM):public static final int TIMEOUT_MS = 30000;
     private static final String PROTOCOL_CHARSET = "utf-8";
     private int curTime;
     private String boundaryPrefixed;
@@ -44,6 +45,7 @@ public abstract class MultiPartRequest<T> extends Request<T> {
      * @param listener      Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
+    @SuppressWarnings("unused")
     public MultiPartRequest(int method, String url, Listener<T> listener, ErrorListener errorListener) {
 
         super(method, url, errorListener);
