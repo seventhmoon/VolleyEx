@@ -18,6 +18,7 @@ import java.util.Map;
  * @param <T> Gson data model
  * @author funglam
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class GsonRequest<T> extends JsonRequest<T> {
 
     protected static final String PROTOCOL_CHARSET = "utf-8";
@@ -26,7 +27,7 @@ public abstract class GsonRequest<T> extends JsonRequest<T> {
      * Content type for request.
      */
     private static final String PROTOCOL_CONTENT_TYPE =
-            String.format("application/x-www-form-urlencoded");
+            "application/x-www-form-urlencoded";
 
 
     public static final String TAG = GsonRequest.class.getSimpleName();

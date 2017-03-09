@@ -10,6 +10,7 @@ import java.util.Map;
 /**
  * Created by HaKr on 08/02/15.
  */
+@SuppressWarnings({"DefaultFileTemplate", "WeakerAccess"})
 public class MultipartUtils {
 
     private MultipartUtils() {}
