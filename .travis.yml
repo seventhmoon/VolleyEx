@@ -38,4 +38,5 @@ android:
 
 script:
   ./gradlew build
+  cat /home/travis/build/seventhmoon/VolleyEx/library/build/reports/lint-results.xml
   #./gradlew build --stacktrace --info --debug
