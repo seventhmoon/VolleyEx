@@ -7,5 +7,10 @@ Expension pack for Android Vollery Framework
 ## What is VolleyEx?
 The underlying is Volley, this repo is just an add-on for Volley.
 
-### Reference
-This repo did referencing VolleyPlus. 
+### Request
+This library provide the following Request on top of Volley
+ - GsonObjectRequest
+ - MultiPartRequest
+
+### Todo
+The Sample application is not done yet. Contribution is welcome.
