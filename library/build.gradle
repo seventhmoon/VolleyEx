@@ -23,7 +23,7 @@ android {
     }
 
     lintOptions {
-        abortOnError false
+        abortOnError true
     }
 
     compileOptions {
@@ -42,6 +42,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-annotations:25.2.0'
     compile 'com.google.code.gson:gson:2.7'
-//    compile 'com.google.guava:guava:20.0'
     compile 'com.android.volley:volley:1.0.0'
+
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
 }
