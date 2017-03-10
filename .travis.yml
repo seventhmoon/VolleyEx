@@ -15,8 +15,8 @@ android:
     - android-25
 
     # Additional components
-    #- extra-google-google_play_services
-    #- extra-google-m2repository
+    - extra-google-google_play_services
+    - extra-google-m2repository
     - extra-android-m2repository
     - extra-android-support
 
@@ -38,4 +38,5 @@ android:
 
 script:
   ./gradlew build
+  cat library/build/reports/lint-results.xml
   #./gradlew build --stacktrace --info --debug
