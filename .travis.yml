@@ -39,6 +39,6 @@ android:
 script:
   ./gradlew build
 
-afterscript:
+after_script:
   cat library/build/reports/lint-results.xml
   #./gradlew build --stacktrace --info --debug
