@@ -3,20 +3,19 @@ jdk: oraclejdk8
 sudo: false
 android:
   components:
+    # The BuildTools version used by your project
+    # The SDK version used to compile your project
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
-    - platform-tools
+    # Ordering DOES matter
     - tools
-
-    # The BuildTools version used by your project
-    - build-tools-25.0.2
-
-    # The SDK version used to compile your project
     - android-25
+    - build-tools-25.0.2
+    - platform-tools
 
     # Additional components
-    #- extra-google-google_play_services
-    #- extra-google-m2repository
+    - extra-google-google_play_services
+    - extra-google-m2repository
     - extra-android-m2repository
     - extra-android-support
 
@@ -38,5 +37,6 @@ android:
 
 script:
   ./gradlew build
-  cat /home/travis/build/seventhmoon/VolleyEx/library/build/reports/lint-results.xml
-  #./gradlew build --stacktrace --info --debug
+
+after_script:
+  cat library/build/reports/lint-results.xml
