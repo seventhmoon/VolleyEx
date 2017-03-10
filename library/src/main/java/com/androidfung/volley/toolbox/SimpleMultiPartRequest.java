@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * A Simple request for making a Multi Part request whose response is retrieve as String
  */
+@SuppressWarnings("CanBeFinal")
 public class SimpleMultiPartRequest extends MultiPartRequest<String> {
 
 	private Listener<String> mListener;
@@ -27,6 +28,7 @@ public class SimpleMultiPartRequest extends MultiPartRequest<String> {
      * @param listener Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
+    @SuppressWarnings("unused")
     public SimpleMultiPartRequest(int method, String url, Listener<String> listener, ErrorListener errorListener) {
         super(method, url, listener, errorListener);
         mListener = listener;
@@ -39,7 +41,8 @@ public class SimpleMultiPartRequest extends MultiPartRequest<String> {
      * @param listener Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
-	public SimpleMultiPartRequest(String url, Listener<String> listener, ErrorListener errorListener) {
+	@SuppressWarnings("unused")
+    public SimpleMultiPartRequest(String url, Listener<String> listener, ErrorListener errorListener) {
 		super(Request.Method.POST, url, listener, errorListener);
 		mListener = listener;
 	}

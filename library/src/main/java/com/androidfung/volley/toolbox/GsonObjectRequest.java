@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
  * @author funglam
  * @param <T>
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class GsonObjectRequest<T> extends JsonRequest<T> {
 
     public final String TAG = GsonObjectRequest.class.getSimpleName();

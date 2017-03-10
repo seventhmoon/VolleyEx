@@ -12,8 +12,10 @@ import java.lang.reflect.Type;
 
 /**
  * Created by funglam on 2/23/17.
+ * Serializer for parsing 0 and 1 to boolean type
  */
 
+@SuppressWarnings("unused")
 public class BooleanSerializer implements JsonSerializer<Boolean>, JsonDeserializer<Boolean> {
 
     @Override

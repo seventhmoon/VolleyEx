@@ -10,18 +10,19 @@ import java.util.Map;
 /**
  * Created by HaKr on 08/02/15.
  */
+@SuppressWarnings({"DefaultFileTemplate", "WeakerAccess"})
 public class MultipartUtils {
 
     private MultipartUtils() {}
 
     public static final String CRLF = "\r\n";
     public static final String HEADER_CONTENT_TYPE = "Content-Type";
-    public static final String HEADER_USER_AGENT = "User-Agent";
+    // --Commented out by Inspection (3/9/2017 11:53 PM):public static final String HEADER_USER_AGENT = "User-Agent";
     public static final String HEADER_CONTENT_DISPOSITION = "Content-Disposition";
     public static final String HEADER_CONTENT_TRANSFER_ENCODING = "Content-Transfer-Encoding";
     public static final String CONTENT_TYPE_MULTIPART = "multipart/form-data; charset=%s; boundary=%s";
     public static final String BINARY = "binary";
-    public static final String EIGHT_BIT = "8bit";
+    // --Commented out by Inspection (3/9/2017 11:54 PM):public static final String EIGHT_BIT = "8bit";
     public static final String FORM_DATA = "form-data; name=\"%s\"";
     public static final String BOUNDARY_PREFIX = "--";
     public static final String CONTENT_TYPE_OCTET_STREAM = "application/octet-stream";
@@ -38,7 +39,7 @@ public class MultipartUtils {
     public static final int BINARY_LENGTH = BINARY.getBytes().length;
     public static final int BOUNDARY_PREFIX_LENGTH = BOUNDARY_PREFIX.getBytes().length;
 
-    public static final byte[] CRLF_BYTES = {0x0D, 0x0A};
+    // --Commented out by Inspection (3/9/2017 11:54 PM):public static final byte[] CRLF_BYTES = {0x0D, 0x0A};
 
     public static int getContentLengthForMultipartRequest(String boundary, Map<String, MultiPartParam> multipartParams, Map<String, String> filesToUpload) {
         final int boundaryLength = boundary.getBytes().length;
