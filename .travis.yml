@@ -37,6 +37,3 @@ android:
 
 script:
   ./gradlew build
-
-after_script:
-  cat library/build/reports/lint-results.xml
