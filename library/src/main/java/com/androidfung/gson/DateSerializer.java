@@ -18,7 +18,7 @@ import java.util.Locale;
  * Serializer for parsing date format
  */
 
-public class DateSerializer implements JsonDeserializer<Date> {
+public final class DateSerializer implements JsonDeserializer<Date> {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("M/d/yyyy h:mm:ss a", Locale.ENGLISH);
 
     @Override

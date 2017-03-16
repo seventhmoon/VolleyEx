@@ -16,7 +16,7 @@ import java.lang.reflect.Type;
  */
 
 @SuppressWarnings("unused")
-public class BooleanSerializer implements JsonSerializer<Boolean>, JsonDeserializer<Boolean> {
+public final class BooleanSerializer implements JsonSerializer<Boolean>, JsonDeserializer<Boolean> {
 
     @Override
     public JsonElement serialize(Boolean arg0, Type arg1, JsonSerializationContext arg2) {
