@@ -14,3 +14,6 @@ This library provide the following Request on top of Volley
 
 ### Todo
 The Sample application is not done yet. Contribution is welcome.
+
+### Refercene
+MultiPartRequest component is referencing from [VolleyPlus](https://github.com/DWorkS/VolleyPlus/)
