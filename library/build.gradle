@@ -23,8 +23,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     lintOptions {
@@ -34,15 +34,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    provided 'com.android.support:support-v13:27.0.2'
-    provided 'com.android.support:support-annotations:27.0.2'
-    provided 'com.google.code.gson:gson:2.8.1'
-    provided 'com.android.volley:volley:1.1.0'
-    androidTestCompile 'com.android.support.test:runner:1.0.1'
-    androidTestCompile 'com.android.support.test:rules:1.0.1'
+    testImplementation 'junit:junit:4.12'
+    api 'com.android.support:support-v13:27.1.1'
+    api 'com.android.support:support-annotations:27.1.1'
+    api 'com.google.code.gson:gson:2.8.2'
+    api 'com.android.volley:volley:1.1.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
